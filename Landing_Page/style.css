@@ -107,10 +107,17 @@ section{
 		/*. FIN Hero  */
 		/*. Cards  */
 
+#cards_title{
+	font-size: 36px;
+	font-weight: 900;
+	display: grid;
+	justify-content: center;
+	padding-bottom: 65px;
+}
 .article{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
+	gap: 50px;
 	padding-left: 100px;
 	padding-right: 100px;
 }
@@ -122,8 +129,31 @@ section{
     height: 180px;
 }
 .subtext{
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 10px;
+	font-weight: 600;
+	text-align: center;
+	color: #6e6f6f;
+	font-size: 18px;
+}
+		/*. FIN Cards  */
+		/*. Quote  */
+#quote blockquote p{
+	font-size: 39px;
+	font-weight: 100;
+	text-align: justify;
+	color: #1F2937;
+	margin-left: 100px;
+	margin-right: 100px;
+	font-style: italic;
+}
+#quote blockquote cite{
+	font-size: 20px;
+	font-weight: 900;
+	font-style: normal;
+	display: flex;
+	justify-content: flex-end;
+	margin-left: 100px;
+	margin-right: 100px;
 }

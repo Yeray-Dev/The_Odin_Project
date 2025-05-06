@@ -70,12 +70,21 @@ header, footer, #hero{
 	flex-direction: row;
 	list-style: none;
 }
+.header_container h3{
+	font-size: 24px;
+}
 	/*. FIN HEADER*/
 
 	/*. Main */
 section{
 	padding-top: 100px;
 	padding-bottom: 100px;
+}
+button{
+	cursor: default;
+}
+button:hover{
+	cursor: pointer;
 }
 		/*. Hero  */
 #hero{
@@ -156,4 +165,35 @@ section{
 	justify-content: flex-end;
 	margin-left: 100px;
 	margin-right: 100px;
+}
+		/*. FIN Quote  */
+		/*. CTA  */
+#cta-sub{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-right: 150px;
+	padding-left: 150px;
+	color: white;
+	border-radius: 0.3cm;
+}
+#cta-sub h3{
+	font-size: 24px;
+	font-weight: 600;
+}
+#cta-sub button{
+	border: solid, 2px, white;
+}
+		/*. FIN CTA  */
+	/*. FIN Main  */
+	/*. Footer */
+
+footer{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-right: 150px;
+	padding-left: 150px;
+	text-align: center;
+	font-size: 18px;
 }

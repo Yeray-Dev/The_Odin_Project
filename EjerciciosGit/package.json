@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "homebridge-homeconnect": "^1.2.9",
+    "latest-version": "^9.0.0"
+  },
+  "name": "yerayblancodelafuente",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

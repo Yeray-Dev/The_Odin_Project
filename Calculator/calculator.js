@@ -1,22 +1,26 @@
 function operations(num1, num2, symbol){
 	num1 = parseFloat(num1)
 	num2 = parseFloat(num2)
-	if (symbol === 'add')
+	if (symbol === '+')
 		return num1 + num2
-	else if (symbol === 'rest')
+	else if (symbol === '-')
 		return num1 - num2
-	else if (symbol === 'mul')
+	else if (symbol === '*')
 		return num1 * num2
-	else if (symbol === 'div')
+	else if (symbol === '/')
 		return num1 / num2
 	else if (symbol === 'mod')
 		return num1 % num2
 }
 function handleAction(state, action){
-	const isOperator = ['add', 'rest', 'mul', 'div', 'mod'].includes(action)
+	const isOperator = ['+', '-', '*', '/', 'mod'].includes(action)
 	if (state.num1 === undefined){
+				state.clean = 1
+	resultDisplay(state)
 		symbol = undefined
 	}else if (isOperator && state.symbol === undefined){
+				state.clean = 1
+	resultDisplay(state)
 		state.symbol = action
 	}else if (isOperator && state.symbol !== undefined){
 		if (state.num1 === undefined || state.num2 === undefined){
@@ -24,15 +28,18 @@ function handleAction(state, action){
 		}else{
 			state.result = operations(state.num1, state.num2, state.symbol)
 			console.log(`El Resultado es = ${state.result}`) //! TESTING
+			resultDisplay(state)
 			state.num1 = state.result
 			state.result = undefined
 			state.num2 = undefined
+			state.symbol = action
 			state.justCalculated = false
 		}
 	}else if (action === 'calc'){
 		if (state.num2 !== undefined){
 			state.result = operations(state.num1, state.num2, state.symbol)
 			console.log(`El Resultado es = ${state.result}`) //! TESTING
+			resultDisplay(state)
 			state.num1 = state.result
 			state.result = undefined
 			state.num2 = undefined
@@ -42,6 +49,8 @@ function handleAction(state, action){
 	}
 }
 function handleValue(state, value){
+	state.clean = 1
+	resultDisplay(state)
 	if (state.symbol === undefined  && state.result === undefined){
 		if (state.justCalculated === true && state.symbol === undefined){
 			state.num1 = undefined
@@ -61,6 +70,34 @@ function handleValue(state, value){
 		}
 	}
 }
+function operationDisplay(state){
+	const displayElement = document.getElementById("low_display")
+	let display = 0
+	if (state.num1 !== undefined && state.symbol === undefined)
+		display = state.num1
+	else if (state.symbol !== undefined && state.num2 === undefined)
+		display = state.num1 + state.symbol
+	else if (state.symbol !== undefined && state.num2 !== undefined)
+		display = state.num1 + state.symbol + state.num2
+	displayElement.innerText = display
+}
+function resultDisplay(state){
+	const displayElement = document.getElementById("hight_display")
+	let display = state.num1 + state.symbol + state.num2
+	if (state.clean === 1){
+		display = " "
+	}
+	displayElement.innerText = display
+}
+function clear(state){
+	console.clear()
+	state.num1 = undefined
+	state.num2 = undefined
+	state.result = undefined
+	state.symbol = undefined
+	state.clean = 1
+	resultDisplay(state)
+}
 function main(){
 	const contenedor = document.getElementById('key-container')
 	let state= { 
@@ -68,29 +105,28 @@ function main(){
 		num2: undefined,
 		result: undefined,
 		symbol: undefined,
+		clean: 0,
 		justCalculated: false
 	}
 	contenedor.addEventListener('click', (event) =>{
 		console.clear() //! TESTING
 		const action = event.target.dataset.action;
 		const value = event.target.dataset.value;
+		let display
 		console.log("Action = ", action) //! TESTING
 		console.log("Value = ", value) //! TESTING
 		if (action === 'clear'){
-			console.clear()
-			state.num1 = undefined
-			state.num2 = undefined
-			state.result = undefined
-			state.symbol = undefined
+			clear(state)
 		}else if (action !== undefined){
+			state.clean = 0
 			handleAction(state, action)
 		}else if (value !== undefined) {
 			handleValue(state, value)
 		}
+		display = operationDisplay(state)
 		console.log("El numero 1 es: ", state.num1) //! TESTING
 		console.log("El numero 2 es: ", state.num2) //! TESTING
 		console.log("El symbol es; ", state.symbol) //! TESTING
 	})
-
 }
 main()

@@ -10,6 +10,9 @@
 #btn-1, #btn-2, #btn-3, #btn-5, #btn-6, #btn-7, #btn-9, #btn-10, #btn-11, #btn-13, #btn-14, #btn-15 {
 	background-color: rgb(169, 169, 169);
 }
+#screem-container{
+	color: rgb(255, 246, 230);
+}
 button{
 	color: white;
 }

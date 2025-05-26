@@ -19,13 +19,14 @@ function handleAction(state, action){
 	resultDisplay(state)
 		symbol = undefined
 	}else if (isOperator && state.symbol === undefined){
-				state.clean = 1
+				state.clean = 1 //* Con esto hacemos que el display secundario se borre.
 	resultDisplay(state)
 		state.symbol = action
 	}else if (isOperator && state.symbol !== undefined){
 		if (state.num1 === undefined || state.num2 === undefined){
-			state.symbol = action
-		}else{
+			state.symbol = action //* Si seleccionamos un operador y antes de introducir ningun numero seleccionamos otro operador, este cambiara.
+		}else{ 	//* En este Else se entra cuando se concatenan mas de una operacion. 
+				//* Se muestra el resultado de la anterior y se usa el resultado de esta como num1
 			state.result = operations(state.num1, state.num2, state.symbol)
 			console.log(`El Resultado es = ${state.result}`) //! TESTING
 			resultDisplay(state)
@@ -35,7 +36,7 @@ function handleAction(state, action){
 			state.symbol = action
 			state.justCalculated = false
 		}
-	}else if (action === 'calc'){
+	}else if (action === 'calc'){ //* Y aqui se entra cuando solo queremos hacer una operacion. Y usamos = o enter para mostrar el resultado
 		if (state.num2 !== undefined){
 			state.result = operations(state.num1, state.num2, state.symbol)
 			console.log(`El Resultado es = ${state.result}`) //! TESTING
@@ -97,7 +98,7 @@ function clear(state){
 	state.num2 = undefined
 	state.result = undefined
 	state.symbol = undefined
-	state.clean = 1
+	state.clean = 1 //* Usamos este operador a modo de Bool para saber cuando borrar el display secundario y cuando mantenerlo
 	resultDisplay(state)
 }
 function main(){

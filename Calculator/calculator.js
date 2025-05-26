@@ -73,12 +73,14 @@ function handleValue(state, value){
 function operationDisplay(state){
 	const displayElement = document.getElementById("low_display")
 	let display = 0
+	let formatNum1 = Number(state.num1).toLocaleString('es-ES')
+	let formatNum2 = Number(state.num2).toLocaleString('es-ES')
 	if (state.num1 !== undefined && state.symbol === undefined)
-		display = state.num1
+		display = formatNum1
 	else if (state.symbol !== undefined && state.num2 === undefined)
-		display = state.num1 + state.symbol
+		display = formatNum1 + state.symbol
 	else if (state.symbol !== undefined && state.num2 !== undefined)
-		display = state.num1 + state.symbol + state.num2
+		display = formatNum1 + state.symbol + formatNum2
 	displayElement.innerText = display
 }
 function resultDisplay(state){
@@ -87,7 +89,7 @@ function resultDisplay(state){
 	if (state.clean === 1){
 		display = " "
 	}
-	displayElement.innerText = display
+	displayElement.innerText = display.toLocaleString('es-ES')
 }
 function clear(state){
 	console.clear()
@@ -112,7 +114,6 @@ function main(){
 		console.clear() //! TESTING
 		const action = event.target.dataset.action;
 		const value = event.target.dataset.value;
-		let display
 		console.log("Action = ", action) //! TESTING
 		console.log("Value = ", value) //! TESTING
 		if (action === 'clear'){
@@ -123,10 +124,25 @@ function main(){
 		}else if (value !== undefined) {
 			handleValue(state, value)
 		}
-		display = operationDisplay(state)
+		operationDisplay(state)
 		console.log("El numero 1 es: ", state.num1) //! TESTING
 		console.log("El numero 2 es: ", state.num2) //! TESTING
 		console.log("El symbol es; ", state.symbol) //! TESTING
+	})
+	document.addEventListener('keydown', (event) =>{
+		const key = event.key
+		if (!isNaN(key)){
+			handleValue(state, key)
+		}else if (key === '+' || key === '-' || key === '/' || key === '*' || key === '%'){
+			state.clean = 0
+			handleAction(state, key)
+		}else if (key === 'Enter' || key === '=') {
+			state.clean = 0
+			handleAction(state, 'calc');
+		}else if (key === 'Escape' || key.toLowerCase() === 'c') {
+			clear(state)
+		}
+		operationDisplay(state)
 	})
 }
 main()

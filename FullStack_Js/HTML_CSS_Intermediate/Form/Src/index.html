@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Form THE ODIN PROJECT</title>
+</head>
+<body>
+	<div class="logo">
+		<img src="../Media/Grass-Background.avif" alt="">
+		<div id="odinLogo">
+			<p>Odin</p>
+			<img src="../Media/odin-lined.png" alt="">
+		</div>
+		<p>Photo by <a href="https://unsplash.com/@haliewestphoto">Halie West</a> on <a href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA">Unsplash</a></p>
+	</div>
+	<div class="right">
+		<div class="form" id="header">
+			<div>
+				<h4>This is not a real online service! You know you need something
+				like this in your life to help you realize your deepest dreams.
+				Sign up now to get started.</h4>
+				<h4 id="CTA">You know you want to.</h4>
+			</div>
+		</div>
+		<div class="form" id="main">
+			<h4>Let's do this!</h4>
+			<form action="/ruta-del-servidor" method="post" name="login_form" id="login_form">
+				<label for="Name">
+					<p>First Name</p>
+					<input type="text" name="Name" required>	
+				</label>
+				<label for="Last_Name">
+					<p>Last Name</p>
+					<input type="text" name="Last_Name" id="Last_Name" required>			
+				</label>
+				<label for="E-Mail">
+					<p>E-Mail</p>
+					<input type="email" name="E-Mail" id="E-Mail" placeholder="example@example.com" required>				
+				</label>
+				<label for="Number">
+					<p>Number</p>
+					<input type="number" name="Number" id="Number" minlength="9" maxlength="9" required>				
+				</label>
+				<label for="password">
+					<p>Password</p>
+					<p id="passwordError"></p>
+					<input type="password" name="password" id="password" minlength="8" maxlength="32" required>				
+				</label>
+				<label for="re-password">
+					<p>Re-Password</p>
+					<input type="password" name="re-password" id="password" min="8" max="32" required>				
+				</label>
+			</div>
+			<div class="form" id="footer">
+					<input id="button" type="submit" value="Create Account">
+				</form>
+				<p>Already have an account? <a href="#">Log in</a></p>
+
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
